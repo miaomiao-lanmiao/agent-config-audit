@@ -4,7 +4,8 @@
 
 本地项目已完成，分支 `feature/scaffold-agent-config-audit`。
 公开仓库：https://github.com/miaomiao-lanmiao/agent-config-audit 。
-账号已授权；功能分支/PR 交付状态见本次最终汇报。
+功能分支已推送，PR：https://github.com/miaomiao-lanmiao/agent-config-audit/pull/1 。
+云端 Linux Python 3.11/3.13 与 Windows Python 3.11 验证均通过；最新版本见 PR checks。
 未合并到 main，未上传 PyPI，未部署生产服务。
 
 ## 选题
@@ -33,6 +34,7 @@ Start-Process reports/my-review.html
 - Edge 桌面/390px 手机检查通过，无脚本错误和横向溢出。
 - wheel/sdist 构建与 Twine 元数据检查通过。
 - 全新环境离线安装 wheel，无运行依赖；在源码目录之外调用成功。
+- GitHub 三套矩阵 CI 均通过；main 已要求这三项检查，禁止 force push 和删除。
 - 证据、截图路径和复现方法见 `docs/VERIFICATION.md`。
 
 ## 待批准/配置的上线动作

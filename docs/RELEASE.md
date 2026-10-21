@@ -7,6 +7,8 @@ Repository: https://github.com/miaomiao-lanmiao/agent-config-audit .
 The `pypi-release` and `release-review` environments have been configured with
 the repository owner as required reviewer and a main-only deployment policy.
 `ACA_PUBLISH_ENABLED` is set to `false`; PyPI account-side trust is pending.
+Main already requires all three CI matrix checks and pull requests, enforces
+those requirements for administrators, and disallows force pushes and deletion.
 `ci.yml` runs lint, types, tests, builds and metadata checks; its `release-gate`
 job references the `release-review` environment and never publishes. Environment
 names in YAML alone do not configure required reviewers.

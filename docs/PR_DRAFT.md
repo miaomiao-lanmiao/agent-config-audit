@@ -22,6 +22,8 @@ Start-Process reports/review.html
 - Ruff: all checks passed. mypy: no issues in 8 source files.
 - unittest: 43 tests passed (additional parameterized edge cases included).
 - Wheel and sdist built; Twine metadata checks passed.
+- GitHub CI passed on Ubuntu Python 3.11/3.13 and Windows Python 3.11:
+  https://github.com/miaomiao-lanmiao/agent-config-audit/actions/runs/39647530158
 - Wheel installed offline into a fresh venv with no dependencies; entrypoint
   works outside the source directory and pip check passes.
 - Edge 155.0.4283.62: risky (8 findings), hardened (0), diff (0 after findings)
@@ -46,13 +48,12 @@ Start-Process reports/review.html
 - Report server names/JSON pointers are intentionally included and must not
   contain secrets. SARIF uses logical locations, not source line annotations.
 - Example package versions illustrate exact pinning; existence is not checked.
-- Local checks were performed on Windows Python 3.11; remote CI results should
-  be reviewed separately. No package has been published.
+- Latest-revision CI results are visible in this PR. No package has been published.
 
 ## Before publication
 
 - [ ] Review and manually merge this PR.
-- [ ] Verify required reviewers and main-only deployment policy.
+- [x] Verify required reviewers and main-only deployment policy (API preflight passed).
 - [ ] Configure PyPI pending/trusted publisher for this repository, release.yml
       and pypi-release; confirm project name ownership/availability.
 - [ ] Inspect artifacts, then set ACA_PUBLISH_ENABLED=true.

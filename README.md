@@ -8,7 +8,7 @@ credential values into them.
 
 **Python 3.11+ · zero runtime dependencies · MIT · no server execution · no telemetry**
 
-![Offline MCP configuration report with prioritized findings](https://raw.githubusercontent.com/miaomiao-lanmiao/agent-config-audit/feature/scaffold-agent-config-audit/research/preview.png)
+![Offline MCP configuration report with prioritized findings](https://raw.githubusercontent.com/miaomiao-lanmiao/agent-config-audit/49154972cd7e7b948b8bdab7a451dc7a2c74454b/research/preview.png)
 
 ## Try it locally
 
