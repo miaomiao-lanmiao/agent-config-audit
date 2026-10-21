@@ -6,7 +6,7 @@ import hashlib
 import json
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any
+from typing import Any, NoReturn
 
 MAX_INPUT_BYTES = 2 * 1024 * 1024
 
@@ -69,7 +69,10 @@ def _jsonc(text: str) -> str:
             j = i + 1
             while j < len(chars) and chars[j].isspace():
                 j += 1
-            if j < len(chars) and chars[j] in "}]":
+            previous = i - 1
+            while previous >= 0 and chars[previous].isspace():
+                previous -= 1
+            if j < len(chars) and chars[j] in "}]" and previous >= 0 and chars[previous] not in "{[:,":
                 chars[i] = " "
     return "".join(chars)
 
@@ -83,12 +86,18 @@ def _unique(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
     return result
 
 
+def _reject_constant(_value: str) -> NoReturn:
+    raise ConfigError("Non-finite constants are not valid JSON values.")
+
+
 def parse_config(raw: bytes) -> Config:
     if len(raw) > MAX_INPUT_BYTES:
         raise ConfigError("Configuration exceeds the 2 MiB input limit.")
     try:
-        data = json.loads(_jsonc(raw.decode("utf-8-sig")), object_pairs_hook=_unique)
-    except (UnicodeError, json.JSONDecodeError, RecursionError) as exc:
+        data = json.loads(_jsonc(raw.decode("utf-8-sig")), object_pairs_hook=_unique, parse_constant=_reject_constant)
+    except ConfigError:
+        raise
+    except (ValueError, RecursionError) as exc:
         raise ConfigError("Invalid UTF-8 JSON/JSONC configuration; check its syntax.") from exc
     if not isinstance(data, dict):
         raise ConfigError("The configuration root must be an object.")

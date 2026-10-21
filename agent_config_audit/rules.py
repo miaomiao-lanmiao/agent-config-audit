@@ -7,7 +7,7 @@ import re
 from collections.abc import Callable
 from dataclasses import asdict, dataclass
 from typing import Any
-from urllib.parse import urlsplit
+from urllib.parse import parse_qsl, urlsplit
 
 from .config import Config, pointer_token
 
@@ -185,6 +185,7 @@ def audit(config: Config) -> list[Finding]:
                 if is_literal(args[i + 1]):
                     add("ACA001", f"args/{i + 1}")
         command = server.get("command", "").replace("\\", "/").rsplit("/", 1)[-1].lower()
+        command = command.removesuffix(".exe").removesuffix(".cmd")
         if command in {
             "sh",
             "bash",
@@ -198,13 +199,15 @@ def audit(config: Config) -> list[Finding]:
             "pwsh.exe",
         }:
             add("ACA003", "command")
-        if command in {"npx", "npx.cmd", "npm", "npm.cmd", "uvx", "uvx.exe"}:
+        package_launcher = command in {"npx", "uvx"} or (command == "npm" and bool(args) and args[0] in {"exec", "x"})
+        if package_launcher:
             if not _package_pinned(command, args):
                 add("ACA002", "args")
             if any(arg in {"-y", "--yes"} or arg.startswith("--yes=") for arg in args):
                 add("ACA009", "args")
         for i, arg in enumerate(args):
-            if not arg.startswith("-") and broad_path(arg):
+            path_arg = arg.partition("=")[2] if arg.startswith("-") and "=" in arg else arg
+            if not path_arg.startswith("-") and broad_path(path_arg):
                 add("ACA004", f"args/{i}")
         if command in {"docker", "docker.exe", "podman", "podman.exe"}:
             if "--privileged" in args or any(arg.lower() == "--privileged=true" for arg in args):
@@ -240,6 +243,8 @@ def audit(config: Config) -> list[Finding]:
 
 def _audit_url(server: dict[str, Any], add: Callable[[str, str], None]) -> None:
     raw = server["url"]
+    if any(ord(char) < 32 or ord(char) == 127 for char in raw):
+        add("ACA012", "url")
     try:
         url = urlsplit(raw)
         host = (url.hostname or "").lower()
@@ -258,6 +263,6 @@ def _audit_url(server: dict[str, Any], add: Callable[[str, str], None]) -> None:
     if (
         url.username
         or url.password
-        or any(SECRET_KEY.search(part.partition("=")[0]) for part in url.query.split("&") if part)
+        or any(SECRET_KEY.search(key) for key, _ in parse_qsl(url.query, keep_blank_values=True))
     ):
         add("ACA010", "url")

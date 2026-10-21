@@ -72,6 +72,8 @@ JSON or JSONC with exactly one server collection:
 Also accepts top-level `servers` or nested `mcp.servers`. Handles UTF-8 BOM,
 comments and trailing commas without damaging URLs/quoted text. Duplicate keys,
 ambiguous collections, invalid field types and inputs over 2 MiB are rejected.
+Non-finite constants, missing values and oversized integer literals are rejected
+with sanitized input errors. Windows .exe/.cmd launchers receive the same rules.
 Disabled entries (`disabled: true`) are counted but skipped by risk checks.
 Only explicit paths are read. There is no home-directory discovery or recursive
 scan. TOML and tool descriptor analysis are outside this version's scope.
@@ -118,12 +120,13 @@ Optional Edge QA is documented in [verification](docs/VERIFICATION.md).
 See [CONTRIBUTING](CONTRIBUTING.md), [SECURITY](SECURITY.md), and
 [the release guide](docs/RELEASE.md).
 
-## Release status
+## Distribution
 
-Version 0.1.0 is a release candidate, **not published to PyPI**. Install from a
-local checkout or built wheel. CI packages artifacts; real publication is
-disabled by default and requires manual dispatch, a reviewed `main` revision,
-configured environment reviewers and PyPI OIDC trusted publishing.
+Download wheel/sdist from [GitHub Releases](https://github.com/miaomiao-lanmiao/agent-config-audit/releases).
+Install a downloaded wheel with `python -m pip install --no-deps PATH_TO_WHEEL`.
+See the [0.1.0 audit](docs/AUDIT.md) for the review and regression fixes.
+PyPI publication requires account-side OIDC trusted-publisher registration and
+a protected workflow. Check the release notes for the current PyPI status.
 
 ## Why this project
 

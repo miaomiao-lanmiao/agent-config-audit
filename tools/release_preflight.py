@@ -17,14 +17,20 @@ def validate_environment(data: dict[str, Any]) -> list[str]:
     ):
         errors.append("pypi-release must have at least one required reviewer.")
     policy = data.get("deployment_branch_policy") or {}
-    if not policy.get("custom_branch_policies"):
+    if not isinstance(policy, dict) or not policy.get("custom_branch_policies"):
         errors.append("pypi-release must restrict deployment branches to a custom main-only policy.")
     return errors
 
 
 def validate_branches(data: dict[str, Any]) -> list[str]:
     policies = data.get("branch_policies", [])
-    if len(policies) != 1 or policies[0].get("name") != "main" or policies[0].get("type", "branch") != "branch":
+    if (
+        not isinstance(policies, list)
+        or len(policies) != 1
+        or not isinstance(policies[0], dict)
+        or policies[0].get("name") != "main"
+        or policies[0].get("type", "branch") != "branch"
+    ):
         return ["pypi-release must allow exactly the main branch (no tags or wildcard branches)."]
     return []
 

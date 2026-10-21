@@ -20,7 +20,9 @@ Start-Process reports/review.html
 ## Verification
 
 - Ruff: all checks passed. mypy: no issues in 8 source files.
-- unittest: 43 tests passed (additional parameterized edge cases included).
+- unittest: 52 tests passed, including nine release-audit regressions.
+- Self-audit findings and repairs are recorded in docs/AUDIT.md. User explicitly
+  authorized self-audit followed by merge/publication on 2026-10-22.
 - Wheel and sdist built; Twine metadata checks passed.
 - GitHub CI passed on Ubuntu Python 3.11/3.13 and Windows Python 3.11:
   https://github.com/miaomiao-lanmiao/agent-config-audit/actions/runs/39647530158

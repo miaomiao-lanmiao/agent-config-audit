@@ -6,7 +6,7 @@
 公开仓库：https://github.com/miaomiao-lanmiao/agent-config-audit 。
 功能分支已推送，PR：https://github.com/miaomiao-lanmiao/agent-config-audit/pull/1 。
 云端 Linux Python 3.11/3.13 与 Windows Python 3.11 验证均通过；最新版本见 PR checks。
-未合并到 main，未上传 PyPI，未部署生产服务。
+用户已于 2026-10-22 授权自审后发布；实际状态见 GitHub Releases 与发布工作流。
 
 ## 选题
 
@@ -29,7 +29,7 @@ Start-Process reports/my-review.html
 ## 验证
 
 - Ruff 通过；mypy 的 8 个源码文件通过。
-- 43 项测试通过，另有多组参数化边界用例。
+- 52 项测试通过，包含九项发布审计回归测试及多组参数化边界用例。
 - 风险示例 8 条发现（5 高、3 中），加固示例无当前规则发现。
 - Edge 桌面/390px 手机检查通过，无脚本错误和横向溢出。
 - wheel/sdist 构建与 Twine 元数据检查通过。
@@ -49,7 +49,7 @@ Start-Process reports/my-review.html
 
 ## 未自动执行的动作与限制
 
-未自动合并、上传 PyPI、部署、force push 或删除仓库。
+按最新授权审计、合并和发布；未执行 force push 或删除仓库。
 静态检查不运行服务，不审查包内容或运行态工具投毒，不能保证配置安全。
 报告保留服务名和 JSON pointer，因此这些标识本身不要包含密钥。
 本机没有改变宿主沙箱策略；浏览器验证启用了 Chromium 沙箱与域名白名单。

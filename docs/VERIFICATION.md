@@ -6,7 +6,7 @@ Local checks performed on 2026-10-22 (Asia/Shanghai), Windows, Python 3.11.15.
 | --- | --- |
 | Ruff 0.17.1 | All checks passed |
 | mypy 2.4.0 | No issues in 8 source files |
-| unittest | 43 tests passed; parameterized cases include malformed config, package versions, mounting syntax and placeholders |
+| unittest | 52 tests passed; includes nine release-audit regressions and parameterized cases |
 | Demo scanner | Risky: 8 findings (5 high, 3 medium); hardened: 0 current-rule findings |
 | Edge 155.0.4283.62 | Risky, hardened, diff and HTML-injection fixture all rendered; no page errors |
 | Mobile 390px | No horizontal overflow |
