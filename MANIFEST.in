@@ -4,3 +4,4 @@ recursive-include docs *.md
 recursive-include examples *.json *.jsonc
 recursive-include tools *.py *.cjs *.json
 include research/TOPIC_REPORT.md
+include research/preview.png
