@@ -3,6 +3,10 @@
 ## Current state
 
 0.1.0 is a local release candidate. No PyPI upload has been performed.
+Repository: https://github.com/miaomiao-lanmiao/agent-config-audit .
+The `pypi-release` and `release-review` environments have been configured with
+the repository owner as required reviewer and a main-only deployment policy.
+`ACA_PUBLISH_ENABLED` is set to `false`; PyPI account-side trust is pending.
 `ci.yml` runs lint, types, tests, builds and metadata checks; its `release-gate`
 job references the `release-review` environment and never publishes. Environment
 names in YAML alone do not configure required reviewers.

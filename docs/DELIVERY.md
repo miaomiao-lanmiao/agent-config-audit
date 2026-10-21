@@ -3,7 +3,8 @@
 ## 当前状态
 
 本地项目已完成，分支 `feature/scaffold-agent-config-audit`。
-GitHub 建仓、推送功能分支和开 PR 等待浏览器账号授权完成。
+公开仓库：https://github.com/miaomiao-lanmiao/agent-config-audit 。
+账号已授权；功能分支/PR 交付状态见本次最终汇报。
 未合并到 main，未上传 PyPI，未部署生产服务。
 
 ## 选题
@@ -36,7 +37,8 @@ Start-Process reports/my-review.html
 
 ## 待批准/配置的上线动作
 
-1. GitHub 授权完成后，本任务可按既定需求建公开仓库、推功能分支、开 PR。
+1. 公开仓库已创建；`pypi-release` / `release-review` 已配置 required reviewer，
+   仅允许 main；`ACA_PUBLISH_ENABLED=false`。环境预检已通过。
 2. 由你审查并合并 PR：项目代码进入 main，不自动发布。
 3. 配置 PyPI pending/trusted publisher 和 `pypi-release` required reviewers，
    确认仅允许 main 部署；这是首次发布的外部账号设置。

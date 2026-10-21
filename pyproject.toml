@@ -23,6 +23,11 @@ classifiers = [
 ]
 dependencies = []
 
+[project.urls]
+Repository = "https://github.com/miaomiao-lanmiao/agent-config-audit"
+Issues = "https://github.com/miaomiao-lanmiao/agent-config-audit/issues"
+Security = "https://github.com/miaomiao-lanmiao/agent-config-audit/security/policy"
+
 [project.scripts]
 agent-config-audit = "agent_config_audit.cli:main"
 
