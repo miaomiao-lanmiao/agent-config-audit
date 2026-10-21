@@ -1,0 +1,6 @@
+{
+  "name": "agent-config-audit-browser-qa",
+  "private": true,
+  "description": "Optional Edge verification tooling; not part of the Python runtime",
+  "devDependencies": {"playwright": "1.64.0"}
+}

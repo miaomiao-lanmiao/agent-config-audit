@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "workspace-files": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-filesystem@1.2.3", "/srv/project/data"],
+      "env": {"API_TOKEN": "${env:API_TOKEN}"}
+    },
+    "container-tools": {
+      "command": "docker",
+      "args": ["run", "--read-only", "--network=none", "example/tools:1.0.0"]
+    },
+    "remote-search": {"url": "https://mcp.example.com/mcp"}
+  }
+}
