@@ -1,0 +1,7 @@
+# Development/build tools only. The installed scanner has no dependencies.
+build==1.6.1
+mypy==2.4.0
+ruff==0.17.1
+setuptools==79.0.1
+twine==7.0.0
+wheel==0.48.0
