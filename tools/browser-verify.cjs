@@ -53,6 +53,7 @@ async function main() {
         if (name === 'xss' && !await page.locator('body').innerText().then(text => text.includes('<script>'))) throw new Error('Escaped server label missing');
         const pageText = await page.locator('body').innerText();
         if (pageText.includes('synthetic-demo-token-not-a-real-secret') || pageText.includes('synthetic-demo-only')) throw new Error('Raw fixture credential leaked');
+        if (name === 'risky') await page.screenshot({path: path.join(root, 'research/preview.png')});
         await page.screenshot({path: path.join(root, `research/${name}-desktop.png`), fullPage: true});
         const headings = await page.locator('h1,h2,h3').allTextContents();
         fs.writeFileSync(path.join(root, `research/${name}-snapshot.txt`), headings.join('\n'));

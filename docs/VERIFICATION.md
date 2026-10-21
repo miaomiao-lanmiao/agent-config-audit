@@ -16,7 +16,7 @@ Local checks performed on 2026-10-22 (Asia/Shanghai), Windows, Python 3.11.15.
 | Release gate tests | Reject missing reviewers, empty reviewers, wildcard/tag/multiple branch policies; accept main-only reviewed environment |
 | Runtime behavior | Tests prohibit subprocess creation and socket use during scan |
 
-Local evidence (ignored in git to avoid large/private artifacts):
+Local evidence (ignored in git except for the small synthetic README preview):
 
 - `research/research-pages.json`: four public primary-source pages read using Edge,
   all HTTP 200; third-party domains blocked.

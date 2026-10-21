@@ -13,6 +13,7 @@ reports/
 .env.*
 !.env.example
 research/*.png
+!research/preview.png
 research/*-snapshot.txt
 research/verification.json
 research/research-pages.json

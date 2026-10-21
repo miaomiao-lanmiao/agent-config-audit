@@ -8,6 +8,8 @@ credential values into them.
 
 **Python 3.11+ · zero runtime dependencies · MIT · no server execution · no telemetry**
 
+![Offline MCP configuration report with prioritized findings](research/preview.png)
+
 ## Try it locally
 
 From the repository root:
