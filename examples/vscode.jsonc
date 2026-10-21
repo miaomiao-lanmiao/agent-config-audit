@@ -1,0 +1,10 @@
+{
+  // JSONC comments and trailing commas are accepted.
+  "servers": {
+    "reviewed-service": {
+      "type": "http",
+      "url": "https://mcp.example.com/mcp",
+      "headers": {"Authorization": "Bearer ${input:service-token}"},
+    },
+  },
+}

@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "workspace-files": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem@latest", "/"],
+      "env": {"API_TOKEN": "synthetic-demo-token-not-a-real-secret"}
+    },
+    "container-tools": {
+      "command": "docker",
+      "args": ["run", "--privileged", "-v", "/var/run/docker.sock:/var/run/docker.sock", "example/tools:1.0.0"]
+    },
+    "remote-search": {
+      "url": "http://mcp.example.com/mcp?api_key=synthetic-demo-only"
+    }
+  }
+}
