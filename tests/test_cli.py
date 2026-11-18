@@ -22,7 +22,7 @@ class CliTests(unittest.TestCase):
 
     def test_help_and_version(self) -> None:
         self.assertEqual(self.run_cli("--help").returncode, 0)
-        self.assertEqual(self.run_cli("--version").stdout.strip(), "0.1.0")
+        self.assertEqual(self.run_cli("--version").stdout.strip(), "0.1.1")
 
     def test_scan_statuses(self) -> None:
         for file, code in (("hardened.json", 0), ("risky.json", 1), ("missing.json", 2)):
