@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       publish:
-        description: 'Publish version 0.1.0 to PyPI after environment approval'
+        description: 'Publish version 0.1.1 to PyPI after environment approval'
         required: true
         type: boolean
         default: false

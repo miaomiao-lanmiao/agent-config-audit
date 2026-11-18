@@ -2,7 +2,9 @@
 
 ## Current state
 
-0.1.0 is a local release candidate. No PyPI upload has been performed.
+The 0.1.1 maintenance release is prepared as a GitHub Release draft with wheel
+and source packages. See [the maintenance notes](releases/v0.1.1.md).
+PyPI publication uses the separate approval workflow below.
 Repository: https://github.com/miaomiao-lanmiao/agent-config-audit .
 The `pypi-release` and `release-review` environments have been configured with
 the repository owner as required reviewer and a main-only deployment policy.

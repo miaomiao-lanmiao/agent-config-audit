@@ -61,6 +61,10 @@ Diff thresholds apply to the **after** configuration; drift can be gated
 separately. JSON includes before findings; SARIF includes after findings and
 field-level change metadata. HTML/text show after findings and change categories.
 
+Diffs distinguish JSON booleans from numbers, including in nested extension
+fields. Unrecognized field changes use the category `other`. Object key order
+and equivalent numbers such as `1` and `1.0` do not cause drift.
+
 ## Input formats
 
 JSON or JSONC with exactly one server collection:

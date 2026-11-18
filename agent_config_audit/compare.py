@@ -17,6 +17,27 @@ class Change:
         return asdict(self)
 
 
+def _json_equal(before: object, after: object) -> bool:
+    pending = [(before, after)]
+    while pending:
+        old, new = pending.pop()
+        # Python considers True == 1 and False == 0, but JSON booleans
+        # and numbers are distinct, including inside objects and arrays.
+        if isinstance(old, bool) != isinstance(new, bool):
+            return False
+        if isinstance(old, dict) and isinstance(new, dict):
+            if old.keys() != new.keys():
+                return False
+            pending.extend((value, new[key]) for key, value in old.items())
+        elif isinstance(old, list) and isinstance(new, list):
+            if len(old) != len(new):
+                return False
+            pending.extend(zip(old, new, strict=True))
+        elif old != new:
+            return False
+    return True
+
+
 def compare(before: Config, after: Config) -> list[Change]:
     changes = []
     known = {"command", "args", "url", "env", "headers", "type", "disabled", "cwd"}
@@ -32,7 +53,7 @@ def compare(before: Config, after: Config) -> list[Change]:
                 {
                     key if key in known else "other"
                     for key in keys
-                    if (key in old) != (key in new) or old.get(key) != new.get(key)
+                    if (key in old) != (key in new) or not _json_equal(old.get(key), new.get(key))
                 }
             )
             if fields:
